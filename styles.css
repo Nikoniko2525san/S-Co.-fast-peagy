@@ -1,0 +1,139 @@
+/* 視点を設定 */
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
+    perspective: 1500px; /* 視点の遠近感を設定（最初の視点） */
+    background: linear-gradient(to bottom, #ffffff, #87CEEB); /* 白と水色のグラデーション */
+}
+
+/* 全面に文字を配置 */
+.scene {
+    position: relative;
+    z-index: 1;
+}
+
+/* 文字のアニメーション */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.letter {
+    font-size: 100px;
+    font-weight: bold;
+    color: #FF6347;
+    opacity: 1;
+    position: relative;
+    animation: drop 1s ease-out forwards, fadeOut 5s 5s forwards;
+}
+
+@keyframes drop {
+    0% {
+        top: -50px;
+        opacity: 0;
+    }
+    100% {
+        top: 0;
+        opacity: 1;
+    }
+}
+
+/* 文字が薄くなるアニメーション */
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+/* 光のアニメーション */
+.glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    animation: glow 5s 3s forwards, fadeGlow 5s 8s forwards;
+}
+
+/* 光の拡大 */
+@keyframes glow {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+    100% {
+        width: 1500px; /* 光の最大サイズを3倍に設定 */
+        height: 1500px;
+        opacity: 1;
+    }
+}
+
+/* 光の消失 */
+@keyframes fadeGlow {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+/* 画面に表示されるテキスト */
+.redirect-container {
+    position: absolute;
+    top: 0; /* 一番上に配置 */
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    animation: fadeIn 2s 13s forwards; /* アニメーションの遅延を調整 */
+}
+
+/* タイトル */
+.web-title {
+    font-size: 40px; /* 少し小さくしました */
+    font-family: 'Nikumaru', sans-serif; /* にくまるフォントを適用 */
+    font-weight: bold;
+    color: red; /* 赤色に変更 */
+    text-align: center;
+}
+
+/* リンクのスタイル */
+.shop-link, .responsible-link {
+    display: block;
+    font-size: 20px;
+    color: red; /* 赤色に変更 */
+    text-decoration: none;
+    margin-top: 30px; /* 少し下げる */
+    text-align: center;
+}
+
+.shop-link:hover, .responsible-link:hover {
+    text-decoration: underline;
+}
+
+/* リンクのフェードイン */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
